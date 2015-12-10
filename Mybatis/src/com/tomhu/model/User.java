@@ -1,7 +1,6 @@
 package com.tomhu.model;
 
 /**
- * 用户的model类
  * 
  * @author Linux
  *

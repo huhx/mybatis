@@ -11,7 +11,7 @@ public interface UserDao {
 	public int update(User user);
 
 	/*
-	 * 删除成功返回1，否则是0.
+	 * 鍒犻櫎鎴愬姛杩斿洖1锛屽惁鍒欐槸0.
 	 */
 	public int delete(int userId);  
 

@@ -20,27 +20,27 @@ public class UserTest {
 
 	@Before
 	public void createSqlSessionFactory() throws IOException {
-		// 1. ¶ÁÈ¡ÅäÖÃÎÄ¼ş
+		// 1. è¯»å–é…ç½®æ–‡ä»¶
 		String resource = "mybatis/SqlMapConfig.xml";
 		Reader reader = Resources.getResourceAsReader(resource);
 
-		// 2. ¸ù¾İÅäÖÃÎÄ¼şÉú³ÉsqlSession¹¤³§
+		// 2. æ ¹æ®é…ç½®æ–‡ä»¶ç”ŸæˆsqlSessionå·¥å‚
 		SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
 		factory = builder.build(reader);
 	}
 
 	/**
-	 * ²åÈëÓÃ»§
+	 * æ’å…¥ç”¨æˆ·
 	 * 
 	 * @throws Exception
 	 */
 	@Test
 	public void insertUser() throws Exception {
 
-		// 3. ¸ù¾İsession¹¤³§Éú³Ésession
+		// 3. æ ¹æ®sessionå·¥å‚ç”Ÿæˆsession
 		SqlSession session = factory.openSession();
 
-		// 4. ¸ù¾İuserDaoMapping.xmlÎÄ¼şµÃµ½ÓÃ»§µÄDao
+		// 4. æ ¹æ®userDaoMapping.xmlæ–‡ä»¶å¾—åˆ°ç”¨æˆ·çš„Dao
 		UserDao userDao = session.getMapper(UserDao.class);
 
 		User user = new User();
@@ -50,51 +50,51 @@ public class UserTest {
 		user.setComment("I love java");
 
 		userDao.insert(user);
-		System.out.println("¼ÇÂ¼ÌõÊı£º" + userDao.countAll());
+		System.out.println("è®°å½•æ¡æ•°ï¼š" + userDao.countAll());
 
-		// Ìá½»session²¢¹Ø±Õ
+		// æäº¤sessionå¹¶å…³é—­
 		session.commit();
 		session.close();
 	}
 
 	/**
-	 * ¸üĞÂÓÃ»§
+	 * æ›´æ–°ç”¨æˆ·
 	 */
 	@Test
 	public void updateUser() {
-		// 3. ¸ù¾İsession¹¤³§Éú³Ésession
+		// 3. æ ¹æ®sessionå·¥å‚ç”Ÿæˆsession
 		SqlSession session = factory.openSession();
 
-		// 4. ¸ù¾İuserDaoMapping.xmlÎÄ¼şµÃµ½ÓÃ»§µÄDao
+		// 4. æ ¹æ®userDaoMapping.xmlæ–‡ä»¶å¾—åˆ°ç”¨æˆ·çš„Dao
 		UserDao userDao = session.getMapper(UserDao.class);
 
-		// 5. ¸ù¾İÓÃ»§µÄidµÃµ½ÓÃ»§
+		// 5. æ ¹æ®ç”¨æˆ·çš„idå¾—åˆ°ç”¨æˆ·
 		User user = userDao.findByUserId(1);
 
-		user.setUserName("ºúºìÏè");
+		user.setUserName("èƒ¡çº¢ç¿”");
 		user.setComment("comment is changed!");
 		userDao.update(user);
 
-		// Ìá½»session²¢¹Ø±Õ
+		// æäº¤sessionå¹¶å…³é—­
 		session.commit();
 		session.close();
 	}
 
 	/**
-	 * É¾³ıÓÃ»§
+	 * åˆ é™¤ç”¨æˆ·
 	 */
 	@Test
 	public void deleteUser() {
-		// 3. ¸ù¾İsession¹¤³§Éú³Ésession
+		// 3. æ ¹æ®sessionå·¥å‚ç”Ÿæˆsession
 		SqlSession session = factory.openSession();
 
-		// 4. ¸ù¾İuserDaoMapping.xmlÎÄ¼şµÃµ½ÓÃ»§µÄDao
+		// 4. æ ¹æ®userDaoMapping.xmlæ–‡ä»¶å¾—åˆ°ç”¨æˆ·çš„Dao
 		UserDao userDao = session.getMapper(UserDao.class);
 
 		int deleteNumber = userDao.delete(1);
 		System.out.println(deleteNumber);
 		
-		// Ìá½»session²¢¹Ø±Õ
+		// æäº¤sessionå¹¶å…³é—­
 		session.commit();
 		session.close();
 	}
