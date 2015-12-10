@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.tomhu.dao.UserDao">
+    <select id="countAll" resultType="int">
+        select count(*) c from tbl_user;
+    </select>
+    
+    <select id="selectAll" resultType="com.tomhu.model.User">
+        select * from tbl_user order by userId asc
+    </select>
+    
+    <insert id="insert" parameterType="com.tomhu.model.User">
+        insert into tbl_user(userId, userName, password, comment) values(#{userId},#{userName},#{password},#{comment})
+    </insert>
+    
+    <update id="update" parameterType="com.tomhu.model.User">
+        update tbl_user set userId=#{userId},userName=#{userName},password=#{password},comment=#{comment}
+    </update>
+    
+    <delete id="delete" parameterType="int">
+        delete from tbl_user where userId=#{userId}
+    </delete>
+    
+    <!-- 我还以为这里面的 resultType是userDao方法的返回值呢！-->
+    <select id="findByUserId" parameterType="int" resultType="com.tomhu.model.User">
+        select * from tbl_user where userId=#{userId}
+    </select>
+</mapper>
